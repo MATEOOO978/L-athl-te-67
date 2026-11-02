@@ -1,0 +1,47 @@
+[
+ {
+  "file": "refs/ref1.jpg",
+  "keyword": "アンダーアーマー ストーム インサレート ラン ハイブリッド ジャケット",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref2.jpg",
+  "keyword": "アンダーアーマー ストーム インサレート ラン ハイブリッド ジャケット ブルー",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref3.jpg",
+  "keyword": "アンダーアーマー コールドギア インフラレッド シールド フーディ",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref4.jpg",
+  "keyword": "ナイキ ランニングディビジョン ジャケット",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref5.jpg",
+  "keyword": "ナイキ テックフリース ハーフジップ グレー",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref6.jpg",
+  "keyword": "ナイキ テックフリース ハーフジップ ブラック",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref7.jpg",
+  "keyword": "ナイキ ランディビジョン エアロレイヤー ジャケット",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref8.jpg",
+  "keyword": "ナイキ フューチャーファスト パンツ フェノム エリート",
+  "max_price": 6000
+ },
+ {
+  "file": "refs/ref9.jpg",
+  "keyword": "ナイキ フェノム エリート ニット パンツ",
+  "max_price": 6000
+ }
+]
