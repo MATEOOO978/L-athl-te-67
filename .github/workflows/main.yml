@@ -1,0 +1,60 @@
+name: Alertes Mercari et Yahoo vers Discord
+
+on:
+  schedule:
+    - cron: "2/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bot-alertes
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/torch/sentence_transformers
+          key: clip-model-v1
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-v1
+
+      - name: Installer les dépendances
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Scanner une seule fois
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          RUN_ONCE: "1"
+          SIMILARITY_THRESHOLD: "0.82"
+          LOG_LEVEL: INFO
+        run: python bot.py
+
+      - name: Sauvegarder les annonces déjà vues
+        if: always()
+        run: |
+          if [ -f seen.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add seen.json
+            git diff --cached --quiet || git commit -m "Mise a jour annonces vues"
+            git push
+          fi
